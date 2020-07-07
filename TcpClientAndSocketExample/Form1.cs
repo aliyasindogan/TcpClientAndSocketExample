@@ -23,64 +23,71 @@ namespace TcpClientAndSocketExample
         {
             BaseRequest baseRequest = new BaseRequest()
             {
-                FinishValue = "finishValue",
-                IpAddress = "ipAdrress",
-                TcpPort = 0000,
-                SendData = "sendData",
+                FinishValue = txtFinishValue.Text,
+                IpAddress = txtIPAddress.Text,
+                TcpPort = Convert.ToInt32(txtPort.Text),
+                SendData = txtSendData.Text,
             };
             label1.Text = TcpClientSendAndGet(baseRequest);
         }
 
         public static string TcpClientSendAndGet(BaseRequest baseRequest)
         {
-            if (NetworkInterface.GetIsNetworkAvailable())
+            try
             {
-                TcpClient tcpCli = new TcpClient();
-                bool connectionStatus = GetConnection(baseRequest, out tcpCli);
-                NetworkStream stream = null;
-                if (connectionStatus == false)
-                    return "Could not establish TCP connection";
+                if (NetworkInterface.GetIsNetworkAvailable())
+                {
+                    TcpClient tcpCli = new TcpClient();
+                    bool connectionStatus = GetConnection(baseRequest, out tcpCli);
+                    NetworkStream stream = null;
+                    if (connectionStatus == false)
+                        return "Could not establish TCP connection";
+                    else
+                    {
+                        try
+                        {
+                            //Send data to TCP Client
+                            Byte[] data = Encoding.ASCII.GetBytes(baseRequest.SendData);
+                            stream = tcpCli.GetStream();
+                            stream.Write(data, 0, data.Length);
+                            //Read from TCP Client
+                            string answer = "";
+                            DateTime st = DateTime.Now;
+                            DateTime et = DateTime.Now.AddSeconds(600);
+                            do
+                            {
+                                st = DateTime.Now;
+                                if (st > et)
+                                    return "TIME-OUT";
+                                data = new Byte[tcpCli.ReceiveBufferSize];
+                                Int32 bytes = stream.ReadAsync(data, 0, data.Length).Result;
+                                string tmpAnswer = Encoding.ASCII.GetString(data, 0, bytes);
+                                Debug.WriteLine(tmpAnswer);
+                                if (tmpAnswer.Contains(baseRequest.FinishValue))
+                                {
+                                    answer += tmpAnswer;
+                                    break;
+                                }
+                                answer += tmpAnswer;
+                            } while (et > st);
+
+                            if (answer.Contains("**"))
+                                return answer;
+                            else
+                                return "Panel no answer";
+                        }
+                        catch (Exception) { return "COMMUNICATION ERROR"; }
+                        finally { tcpCli.Close(); }
+                    }
+                }
                 else
                 {
-                    try
-                    {
-                        //Send data to TCP Client
-                        Byte[] data = Encoding.ASCII.GetBytes(baseRequest.SendData);
-                        stream = tcpCli.GetStream();
-                        stream.Write(data, 0, data.Length);
-                        //Read from TCP Client
-                        string answer = "";
-                        DateTime st = DateTime.Now;
-                        DateTime et = DateTime.Now.AddSeconds(600);
-                        do
-                        {
-                            st = DateTime.Now;
-                            if (st > et)
-                                return "TIME-OUT";
-                            data = new Byte[tcpCli.ReceiveBufferSize];
-                            Int32 bytes = stream.ReadAsync(data, 0, data.Length).Result;
-                            string tmpAnswer = Encoding.ASCII.GetString(data, 0, bytes);
-                            Debug.WriteLine(tmpAnswer);
-                            if (tmpAnswer.Contains(baseRequest.FinishValue))
-                            {
-                                answer += tmpAnswer;
-                                break;
-                            }
-                            answer += tmpAnswer;
-                        } while (et > st);
-
-                        if (answer.Contains("**"))
-                            return answer;
-                        else
-                            return "Panel no answer";
-                    }
-                    catch (Exception) { return "COMMUNICATION ERROR"; }
-                    finally { tcpCli.Close(); }
+                    return "THERE IS NO CONNECTION";
                 }
             }
-            else
+            catch (Exception ex)
             {
-                return "THERE IS NO CONNECTION";
+                MessageBox.Show("Error Message: " + ex.Message);
             }
         }
 
@@ -121,38 +128,60 @@ namespace TcpClientAndSocketExample
 
         private void btnSocket_Click(object sender, EventArgs e)
         {
-            var serverIP = new IPEndPoint(IPAddress.Parse("ipadress"), 0000);
-            using (var socket = new Socket(serverIP.AddressFamily, SocketType.Stream, ProtocolType.Tcp))
-
+            try
             {
-                socket.Connect(serverIP);
+                label1.Text = "NONE";
+                string ip1 = txtIPAddress.Text.Substring(0, 3);
+                string ip2 = txtIPAddress.Text.Substring(3, 3);
+                string ip3 = txtIPAddress.Text.Substring(6, 3);
+                string ip4 = txtIPAddress.Text.Substring(9, 3);
+                IPAddress ip = IPAddress.Parse($"{ip1.TrimStart('0')}.{ip2.TrimStart('0')}.{ip3.TrimStart('0')}.{ip4.TrimStart('0')}");
+                var serverIP = new IPEndPoint(ip, Convert.ToInt32(txtPort.Text));
+                using (var socket = new Socket(serverIP.AddressFamily, SocketType.Stream, ProtocolType.Tcp))
 
-                using (var ns = new NetworkStream(socket))
-                using (var sw = new StreamWriter(ns, Encoding.ASCII))
-                using (var sr = new StreamReader(ns, Encoding.UTF8))
                 {
-                    string request = "request";
+                    socket.Connect(serverIP);
 
-                    sw.Write(request);
-                    sw.Flush();
-                    while (!ns.DataAvailable)
+                    using (var ns = new NetworkStream(socket))
+                    using (var sw = new StreamWriter(ns, Encoding.ASCII))
+                    using (var sr = new StreamReader(ns, Encoding.UTF8))
                     {
-                        Thread.SpinWait(1);
-                    }
+                        string request = txtSendData.Text;
 
-                    char[] responseBuffer = new char[1024];
-                    int getSize;
+                        sw.Write(request);
+                        sw.Flush();
+                        while (!ns.DataAvailable)
+                        {
+                            Thread.SpinWait(1);
+                        }
 
-                    while ((getSize = sr.Read(responseBuffer, 0, responseBuffer.Length)) > 0)
-                    {
-                        string data = new string(responseBuffer, 0, getSize);
-                        label1.Text = data;
-                        Debug.Write(data);
-                        if (data.Contains("**"))
-                            break;
+                        char[] responseBuffer = new char[1024];
+                        int getSize;
+
+                        while ((getSize = sr.Read(responseBuffer, 0, responseBuffer.Length)) > 0)
+                        {
+                            string data = new string(responseBuffer, 0, getSize);
+                            label1.Text = data;
+                            Debug.Write(data);
+                            if (data.Contains(txtFinishValue.Text))
+                                break;
+                        }
                     }
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error Message: " + ex.Message);
+            }
+        }
+
+        private void btnClearForm_Click(object sender, EventArgs e)
+        {
+            txtSendData.Text = "";
+            txtPort.Text = "";
+            txtIPAddress.Text = "";
+            txtFinishValue.Text = "";
+            label1.Text = "NONE";
         }
     }
 }
