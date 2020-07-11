@@ -88,6 +88,7 @@ namespace TcpClientAndSocketExample
             catch (Exception ex)
             {
                 MessageBox.Show("Error Message: " + ex.Message);
+                return "";
             }
         }
 
