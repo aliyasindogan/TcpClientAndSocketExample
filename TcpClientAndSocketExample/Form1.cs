@@ -20,6 +20,16 @@ namespace TcpClientAndSocketExample
             InitializeComponent();
         }
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            txtIPAddress.Text = Properties.Settings.Default["ipAddress"].ToString();
+            txtFinishValue.Text = Properties.Settings.Default["finishValue"].ToString();
+            txtPort.Text = Properties.Settings.Default["port"].ToString();
+            txtSendData.Text = Properties.Settings.Default["sendData"].ToString();
+            if (txtIPAddress.Text.Count() > 1)
+                checkBoxRememberMe.Checked = true;
+        }
+
         private void btnTcpClient_Click(object sender, EventArgs e)
         {
             try
@@ -29,6 +39,22 @@ namespace TcpClientAndSocketExample
                     !String.IsNullOrEmpty(txtPort.Text) &&
                     !String.IsNullOrEmpty(txtSendData.Text))
                 {
+                    if (checkBoxRememberMe.Checked)
+                    {
+                        Properties.Settings.Default["ipAddress"] = txtIPAddress.Text;
+                        Properties.Settings.Default["finishValue"] = txtFinishValue.Text;
+                        Properties.Settings.Default["port"] = txtPort.Text;
+                        Properties.Settings.Default["sendData"] = txtSendData.Text;
+                    }
+                    else
+                    {
+                        Properties.Settings.Default[""] = txtIPAddress.Text;
+                        Properties.Settings.Default[""] = txtFinishValue.Text;
+                        Properties.Settings.Default[""] = txtPort.Text;
+                        Properties.Settings.Default[""] = txtSendData.Text;
+                    }
+                    Properties.Settings.Default.Save();
+
                     BaseRequest baseRequest = new BaseRequest()
                     {
                         FinishValue = txtFinishValue.Text,

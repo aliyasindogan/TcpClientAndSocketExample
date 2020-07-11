@@ -45,6 +45,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.listBoxData = new System.Windows.Forms.ListBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.checkBoxRememberMe = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // btnTcpClient
@@ -185,11 +186,22 @@
             this.label8.TabIndex = 3;
             this.label8.Text = "Data";
             // 
+            // checkBoxRememberMe
+            // 
+            this.checkBoxRememberMe.AutoSize = true;
+            this.checkBoxRememberMe.Location = new System.Drawing.Point(37, 186);
+            this.checkBoxRememberMe.Name = "checkBoxRememberMe";
+            this.checkBoxRememberMe.Size = new System.Drawing.Size(95, 17);
+            this.checkBoxRememberMe.TabIndex = 5;
+            this.checkBoxRememberMe.Text = "Remember Me";
+            this.checkBoxRememberMe.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(764, 336);
+            this.Controls.Add(this.checkBoxRememberMe);
             this.Controls.Add(this.listBoxData);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label6);
@@ -209,6 +221,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "TcpClient And Socket Example";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -232,6 +245,7 @@
         private System.Windows.Forms.Label label7;
         public System.Windows.Forms.ListBox listBoxData;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.CheckBox checkBoxRememberMe;
     }
 }
 
