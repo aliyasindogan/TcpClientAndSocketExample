@@ -69,7 +69,7 @@ namespace TcpClientAndSocketExample
                 }
                 else
                 {
-                    MessageBox.Show("Tüm Alanları Doludurunuz!");
+                    MessageBox.Show("Tüm Alanları Doldurunuz!");
                 }
             }
             catch (Exception)
@@ -128,7 +128,7 @@ namespace TcpClientAndSocketExample
                 }
                 else
                 {
-                    MessageBox.Show("Tüm Alanları Doludurunuz!");
+                    MessageBox.Show("Tüm Alanları Doldurunuz!");
                 }
             }
             catch (Exception ex)
