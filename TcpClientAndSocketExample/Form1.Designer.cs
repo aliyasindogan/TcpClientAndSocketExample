@@ -44,6 +44,7 @@
             this.btnClearForm = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.listBoxData = new System.Windows.Forms.ListBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnTcpClient
@@ -170,10 +171,19 @@
             // listBoxData
             // 
             this.listBoxData.FormattingEnabled = true;
-            this.listBoxData.Location = new System.Drawing.Point(254, 12);
+            this.listBoxData.Location = new System.Drawing.Point(259, 30);
             this.listBoxData.Name = "listBoxData";
-            this.listBoxData.Size = new System.Drawing.Size(461, 303);
+            this.listBoxData.Size = new System.Drawing.Size(461, 277);
             this.listBoxData.TabIndex = 4;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(257, 11);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(30, 13);
+            this.label8.TabIndex = 3;
+            this.label8.Text = "Data";
             // 
             // Form1
             // 
@@ -185,6 +195,7 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtFinishValue);
@@ -220,6 +231,7 @@
         private System.Windows.Forms.Button btnClearForm;
         private System.Windows.Forms.Label label7;
         public System.Windows.Forms.ListBox listBoxData;
+        private System.Windows.Forms.Label label8;
     }
 }
 

@@ -16,6 +16,7 @@ namespace TcpClientAndSocketExample
     {
         public Form1()
         {
+            CheckForIllegalCrossThreadCalls = false;
             InitializeComponent();
         }
 
@@ -28,7 +29,10 @@ namespace TcpClientAndSocketExample
                 TcpPort = Convert.ToInt32(txtPort.Text),
                 SendData = txtSendData.Text,
             };
-            label1.Text = TcpClientSendAndGet(baseRequest, listBoxData);
+            Task.Run(() =>
+            {
+                label1.Text = TcpClientSendAndGet(baseRequest, listBoxData);
+            });
         }
 
         public static string TcpClientSendAndGet(BaseRequest baseRequest, ListBox listBox)
