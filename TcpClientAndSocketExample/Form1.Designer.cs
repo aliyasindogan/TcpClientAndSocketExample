@@ -79,6 +79,7 @@
             // 
             // txtIPAddress
             // 
+            this.txtIPAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.txtIPAddress.Location = new System.Drawing.Point(34, 30);
             this.txtIPAddress.Name = "txtIPAddress";
             this.txtIPAddress.Size = new System.Drawing.Size(177, 20);
@@ -86,6 +87,7 @@
             // 
             // txtPort
             // 
+            this.txtPort.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.txtPort.Location = new System.Drawing.Point(34, 73);
             this.txtPort.Name = "txtPort";
             this.txtPort.Size = new System.Drawing.Size(177, 20);
@@ -93,6 +95,7 @@
             // 
             // txtSendData
             // 
+            this.txtSendData.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.txtSendData.Location = new System.Drawing.Point(34, 116);
             this.txtSendData.Name = "txtSendData";
             this.txtSendData.Size = new System.Drawing.Size(177, 20);
@@ -100,6 +103,7 @@
             // 
             // txtFinishValue
             // 
+            this.txtFinishValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.txtFinishValue.Location = new System.Drawing.Point(34, 159);
             this.txtFinishValue.Name = "txtFinishValue";
             this.txtFinishValue.Size = new System.Drawing.Size(177, 20);
