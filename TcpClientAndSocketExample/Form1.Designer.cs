@@ -53,7 +53,7 @@
             this.btnTcpClient.Name = "btnTcpClient";
             this.btnTcpClient.Size = new System.Drawing.Size(93, 23);
             this.btnTcpClient.TabIndex = 0;
-            this.btnTcpClient.Text = "Tcp Client Send";
+            this.btnTcpClient.Text = "Send Tcp Client ";
             this.btnTcpClient.UseVisualStyleBackColor = true;
             this.btnTcpClient.Click += new System.EventHandler(this.btnTcpClient_Click);
             // 
@@ -63,7 +63,7 @@
             this.btnSocket.Name = "btnSocket";
             this.btnSocket.Size = new System.Drawing.Size(78, 23);
             this.btnSocket.TabIndex = 0;
-            this.btnSocket.Text = "Socket Send";
+            this.btnSocket.Text = "Send Socket ";
             this.btnSocket.UseVisualStyleBackColor = true;
             this.btnSocket.Click += new System.EventHandler(this.btnSocket_Click);
             // 
