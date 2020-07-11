@@ -22,17 +22,93 @@ namespace TcpClientAndSocketExample
 
         private void btnTcpClient_Click(object sender, EventArgs e)
         {
-            BaseRequest baseRequest = new BaseRequest()
+            try
             {
-                FinishValue = txtFinishValue.Text,
-                IpAddress = txtIPAddress.Text,
-                TcpPort = Convert.ToInt32(txtPort.Text),
-                SendData = txtSendData.Text,
-            };
-            Task.Run(() =>
+                if (!String.IsNullOrEmpty(txtFinishValue.Text) &&
+                    !String.IsNullOrEmpty(txtIPAddress.Text) &&
+                    !String.IsNullOrEmpty(txtPort.Text) &&
+                    !String.IsNullOrEmpty(txtSendData.Text))
+                {
+                    BaseRequest baseRequest = new BaseRequest()
+                    {
+                        FinishValue = txtFinishValue.Text,
+                        IpAddress = txtIPAddress.Text,
+                        TcpPort = Convert.ToInt32(txtPort.Text),
+                        SendData = txtSendData.Text,
+                    };
+                    Task.Run(() =>
+                    {
+                        label1.Text = TcpClientSendAndGet(baseRequest, listBoxData);
+                    });
+                }
+                else
+                {
+                    MessageBox.Show("Tüm Alanları Doludurunuz!");
+                }
+            }
+            catch (Exception)
             {
-                label1.Text = TcpClientSendAndGet(baseRequest, listBoxData);
-            });
+                MessageBox.Show("Hata Oluştu!");
+            }
+        }
+
+        private void btnSocket_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!String.IsNullOrEmpty(txtFinishValue.Text) &&
+                    !String.IsNullOrEmpty(txtIPAddress.Text) &&
+                    !String.IsNullOrEmpty(txtPort.Text) &&
+                    !String.IsNullOrEmpty(txtSendData.Text))
+                {
+                    label1.Text = "NONE";
+                    string ip1 = txtIPAddress.Text.Substring(0, 3);
+                    string ip2 = txtIPAddress.Text.Substring(3, 3);
+                    string ip3 = txtIPAddress.Text.Substring(6, 3);
+                    string ip4 = txtIPAddress.Text.Substring(9, 3);
+                    IPAddress ip = IPAddress.Parse($"{ip1.TrimStart('0')}.{ip2.TrimStart('0')}.{ip3.TrimStart('0')}.{ip4.TrimStart('0')}");
+                    var serverIP = new IPEndPoint(ip, Convert.ToInt32(txtPort.Text));
+                    using (var socket = new Socket(serverIP.AddressFamily, SocketType.Stream, ProtocolType.Tcp))
+
+                    {
+                        socket.Connect(serverIP);
+
+                        using (var ns = new NetworkStream(socket))
+                        using (var sw = new StreamWriter(ns, Encoding.ASCII))
+                        using (var sr = new StreamReader(ns, Encoding.UTF8))
+                        {
+                            string request = txtSendData.Text;
+
+                            sw.Write(request);
+                            sw.Flush();
+                            while (!ns.DataAvailable)
+                            {
+                                Thread.SpinWait(1);
+                            }
+
+                            char[] responseBuffer = new char[1024];
+                            int getSize;
+
+                            while ((getSize = sr.Read(responseBuffer, 0, responseBuffer.Length)) > 0)
+                            {
+                                string data = new string(responseBuffer, 0, getSize);
+                                label1.Text = data;
+                                Debug.Write(data);
+                                if (data.Contains(txtFinishValue.Text))
+                                    break;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Tüm Alanları Doludurunuz!");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error Message: " + ex.Message);
+            }
         }
 
         public static string TcpClientSendAndGet(BaseRequest baseRequest, ListBox listBox)
@@ -129,55 +205,6 @@ namespace TcpClientAndSocketExample
                 tcpClient = null;
                 cli.Close();
                 return false;
-            }
-        }
-
-        private void btnSocket_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                label1.Text = "NONE";
-                string ip1 = txtIPAddress.Text.Substring(0, 3);
-                string ip2 = txtIPAddress.Text.Substring(3, 3);
-                string ip3 = txtIPAddress.Text.Substring(6, 3);
-                string ip4 = txtIPAddress.Text.Substring(9, 3);
-                IPAddress ip = IPAddress.Parse($"{ip1.TrimStart('0')}.{ip2.TrimStart('0')}.{ip3.TrimStart('0')}.{ip4.TrimStart('0')}");
-                var serverIP = new IPEndPoint(ip, Convert.ToInt32(txtPort.Text));
-                using (var socket = new Socket(serverIP.AddressFamily, SocketType.Stream, ProtocolType.Tcp))
-
-                {
-                    socket.Connect(serverIP);
-
-                    using (var ns = new NetworkStream(socket))
-                    using (var sw = new StreamWriter(ns, Encoding.ASCII))
-                    using (var sr = new StreamReader(ns, Encoding.UTF8))
-                    {
-                        string request = txtSendData.Text;
-
-                        sw.Write(request);
-                        sw.Flush();
-                        while (!ns.DataAvailable)
-                        {
-                            Thread.SpinWait(1);
-                        }
-
-                        char[] responseBuffer = new char[1024];
-                        int getSize;
-
-                        while ((getSize = sr.Read(responseBuffer, 0, responseBuffer.Length)) > 0)
-                        {
-                            string data = new string(responseBuffer, 0, getSize);
-                            label1.Text = data;
-                            Debug.Write(data);
-                            if (data.Contains(txtFinishValue.Text))
-                                break;
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error Message: " + ex.Message);
             }
         }
 
