@@ -28,10 +28,10 @@ namespace TcpClientAndSocketExample
                 TcpPort = Convert.ToInt32(txtPort.Text),
                 SendData = txtSendData.Text,
             };
-            label1.Text = TcpClientSendAndGet(baseRequest);
+            label1.Text = TcpClientSendAndGet(baseRequest, listBoxData);
         }
 
-        public static string TcpClientSendAndGet(BaseRequest baseRequest)
+        public static string TcpClientSendAndGet(BaseRequest baseRequest, ListBox listBox)
         {
             try
             {
@@ -62,6 +62,7 @@ namespace TcpClientAndSocketExample
                                 data = new Byte[tcpCli.ReceiveBufferSize];
                                 Int32 bytes = stream.ReadAsync(data, 0, data.Length).Result;
                                 string tmpAnswer = Encoding.ASCII.GetString(data, 0, bytes);
+                                listBox.Items.Add(tmpAnswer);
                                 Debug.WriteLine(tmpAnswer);
                                 if (tmpAnswer.Contains(baseRequest.FinishValue))
                                 {

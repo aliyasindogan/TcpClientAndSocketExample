@@ -43,11 +43,12 @@
             this.label6 = new System.Windows.Forms.Label();
             this.btnClearForm = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
+            this.listBoxData = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // btnTcpClient
             // 
-            this.btnTcpClient.Location = new System.Drawing.Point(100, 213);
+            this.btnTcpClient.Location = new System.Drawing.Point(34, 209);
             this.btnTcpClient.Name = "btnTcpClient";
             this.btnTcpClient.Size = new System.Drawing.Size(93, 23);
             this.btnTcpClient.TabIndex = 0;
@@ -57,7 +58,7 @@
             // 
             // btnSocket
             // 
-            this.btnSocket.Location = new System.Drawing.Point(199, 213);
+            this.btnSocket.Location = new System.Drawing.Point(133, 209);
             this.btnSocket.Name = "btnSocket";
             this.btnSocket.Size = new System.Drawing.Size(78, 23);
             this.btnSocket.TabIndex = 0;
@@ -68,7 +69,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(196, 296);
+            this.label1.Location = new System.Drawing.Point(130, 292);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(38, 13);
             this.label1.TabIndex = 1;
@@ -76,28 +77,28 @@
             // 
             // txtIPAddress
             // 
-            this.txtIPAddress.Location = new System.Drawing.Point(100, 34);
+            this.txtIPAddress.Location = new System.Drawing.Point(34, 30);
             this.txtIPAddress.Name = "txtIPAddress";
             this.txtIPAddress.Size = new System.Drawing.Size(177, 20);
             this.txtIPAddress.TabIndex = 2;
             // 
             // txtPort
             // 
-            this.txtPort.Location = new System.Drawing.Point(100, 77);
+            this.txtPort.Location = new System.Drawing.Point(34, 73);
             this.txtPort.Name = "txtPort";
             this.txtPort.Size = new System.Drawing.Size(177, 20);
             this.txtPort.TabIndex = 2;
             // 
             // txtSendData
             // 
-            this.txtSendData.Location = new System.Drawing.Point(100, 120);
+            this.txtSendData.Location = new System.Drawing.Point(34, 116);
             this.txtSendData.Name = "txtSendData";
             this.txtSendData.Size = new System.Drawing.Size(177, 20);
             this.txtSendData.TabIndex = 2;
             // 
             // txtFinishValue
             // 
-            this.txtFinishValue.Location = new System.Drawing.Point(100, 163);
+            this.txtFinishValue.Location = new System.Drawing.Point(34, 159);
             this.txtFinishValue.Name = "txtFinishValue";
             this.txtFinishValue.Size = new System.Drawing.Size(177, 20);
             this.txtFinishValue.TabIndex = 2;
@@ -105,7 +106,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(100, 16);
+            this.label2.Location = new System.Drawing.Point(34, 12);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(58, 13);
             this.label2.TabIndex = 3;
@@ -114,7 +115,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(100, 59);
+            this.label3.Location = new System.Drawing.Point(34, 55);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(26, 13);
             this.label3.TabIndex = 3;
@@ -123,7 +124,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(100, 102);
+            this.label4.Location = new System.Drawing.Point(34, 98);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(58, 13);
             this.label4.TabIndex = 3;
@@ -132,7 +133,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(100, 145);
+            this.label5.Location = new System.Drawing.Point(34, 141);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(64, 13);
             this.label5.TabIndex = 3;
@@ -141,7 +142,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(137, 296);
+            this.label6.Location = new System.Drawing.Point(71, 292);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(53, 13);
             this.label6.TabIndex = 3;
@@ -149,7 +150,7 @@
             // 
             // btnClearForm
             // 
-            this.btnClearForm.Location = new System.Drawing.Point(97, 251);
+            this.btnClearForm.Location = new System.Drawing.Point(31, 247);
             this.btnClearForm.Name = "btnClearForm";
             this.btnClearForm.Size = new System.Drawing.Size(180, 23);
             this.btnClearForm.TabIndex = 0;
@@ -160,17 +161,26 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(164, 16);
+            this.label7.Location = new System.Drawing.Point(98, 12);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(100, 13);
             this.label7.TabIndex = 3;
             this.label7.Text = "(Ex:198001002003)";
             // 
+            // listBoxData
+            // 
+            this.listBoxData.FormattingEnabled = true;
+            this.listBoxData.Location = new System.Drawing.Point(254, 12);
+            this.listBoxData.Name = "listBoxData";
+            this.listBoxData.Size = new System.Drawing.Size(461, 303);
+            this.listBoxData.TabIndex = 4;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(391, 336);
+            this.ClientSize = new System.Drawing.Size(764, 336);
+            this.Controls.Add(this.listBoxData);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label4);
@@ -209,6 +219,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnClearForm;
         private System.Windows.Forms.Label label7;
+        public System.Windows.Forms.ListBox listBoxData;
     }
 }
 
