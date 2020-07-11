@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.btnTcpClient = new System.Windows.Forms.Button();
             this.btnSocket = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -173,6 +174,7 @@
             this.Controls.Add(this.btnSocket);
             this.Controls.Add(this.btnClearForm);
             this.Controls.Add(this.btnTcpClient);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "TcpClient And Socket Example";
             this.ResumeLayout(false);
