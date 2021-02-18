@@ -213,7 +213,7 @@ namespace TcpClientAndSocketExample
             {
                 IPAddress ip = IPAddress.Parse($"{ip1.TrimStart('0')}.{ip2.TrimStart('0')}.{ip3.TrimStart('0')}.{ip4.TrimStart('0')}");
                 var result = cli.BeginConnect(ip, baseRequest.TcpPort, null, null);
-                var success = result.AsyncWaitHandle.WaitOne(TimeSpan.FromSeconds(2));
+                var success = result.AsyncWaitHandle.WaitOne(TimeSpan.FromSeconds(5), false);
                 if (success)
                 {
                     tcpClient = cli;
