@@ -202,23 +202,23 @@ namespace TcpClientAndSocketExample
         public static bool GetConnection(BaseRequest baseRequest, out TcpClient tcpClient)
         {
             TcpClient cli = new TcpClient();
-            string newIpAdres = "";
-            newIpAdres += baseRequest.IpAddress.Substring(0, 3);
-            newIpAdres += baseRequest.IpAddress.Substring(3, 3);
+            string newIpAddress = "";
+            newIpAddress += baseRequest.IpAddress.Substring(0, 3);
+            newIpAddress += baseRequest.IpAddress.Substring(3, 3);
             if (baseRequest.IpAddress.Substring(6, 3) == "000")
-                newIpAdres += "0";
+                newIpAddress += "0";
             else
-                newIpAdres += baseRequest.IpAddress.Substring(6, 3);
+                newIpAddress += baseRequest.IpAddress.Substring(6, 3);
 
-            newIpAdres += baseRequest.IpAddress.Substring(6, 3);
-            newIpAdres += baseRequest.IpAddress.Substring(9, 3);
+            newIpAddress += baseRequest.IpAddress.Substring(6, 3);
+            newIpAddress += baseRequest.IpAddress.Substring(9, 3);
             Thread.Sleep(100);
             if (cli.Connected)
                 cli.Close();
             try
             {
-                IPAddress ip = IPAddress.Parse($"{ip1.TrimStart('0')}.{ip2.TrimStart('0')}.{ip3.TrimStart('0')}.{ip4.TrimStart('0')}");
-                var result = cli.BeginConnect(ip, baseRequest.TcpPort, null, null);
+                // IPAddress ip = IPAddress.Parse($"{ip1.TrimStart('0')}.{ip2.TrimStart('0')}.{ip3.TrimStart('0')}.{ip4.TrimStart('0')}");
+                var result = cli.BeginConnect(newIpAddress, baseRequest.TcpPort, null, null);
                 var success = result.AsyncWaitHandle.WaitOne(TimeSpan.FromSeconds(5), false);
                 if (success)
                 {
