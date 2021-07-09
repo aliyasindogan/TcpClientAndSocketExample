@@ -202,10 +202,16 @@ namespace TcpClientAndSocketExample
         public static bool GetConnection(BaseRequest baseRequest, out TcpClient tcpClient)
         {
             TcpClient cli = new TcpClient();
-            string ip1 = baseRequest.IpAddress.Substring(0, 3);
-            string ip2 = baseRequest.IpAddress.Substring(3, 3);
-            string ip3 = baseRequest.IpAddress.Substring(6, 3);
-            string ip4 = baseRequest.IpAddress.Substring(9, 3);
+            string newIpAdres = "";
+            newIpAdres += baseRequest.IpAddress.Substring(0, 3);
+            newIpAdres += baseRequest.IpAddress.Substring(3, 3);
+            if (baseRequest.IpAddress.Substring(6, 3) == "000")
+                newIpAdres += "0";
+            else
+                newIpAdres += baseRequest.IpAddress.Substring(6, 3);
+
+            newIpAdres += baseRequest.IpAddress.Substring(6, 3);
+            newIpAdres += baseRequest.IpAddress.Substring(9, 3);
             Thread.Sleep(100);
             if (cli.Connected)
                 cli.Close();
@@ -241,6 +247,10 @@ namespace TcpClientAndSocketExample
             txtIPAddress.Text = "";
             txtFinishValue.Text = "";
             label1.Text = "NONE";
+        }
+
+        private void copyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
         }
     }
 }

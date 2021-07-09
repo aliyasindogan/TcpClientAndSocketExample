@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.btnTcpClient = new System.Windows.Forms.Button();
             this.btnSocket = new System.Windows.Forms.Button();
@@ -46,6 +47,9 @@
             this.listBoxData = new System.Windows.Forms.ListBox();
             this.label8 = new System.Windows.Forms.Label();
             this.checkBoxRememberMe = new System.Windows.Forms.CheckBox();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnTcpClient
@@ -175,6 +179,7 @@
             // 
             // listBoxData
             // 
+            this.listBoxData.ContextMenuStrip = this.contextMenuStrip1;
             this.listBoxData.FormattingEnabled = true;
             this.listBoxData.Location = new System.Drawing.Point(259, 30);
             this.listBoxData.Name = "listBoxData";
@@ -199,6 +204,20 @@
             this.checkBoxRememberMe.TabIndex = 5;
             this.checkBoxRememberMe.Text = "Remember Me";
             this.checkBoxRememberMe.UseVisualStyleBackColor = true;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.copyToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 48);
+            // 
+            // copyToolStripMenuItem
+            // 
+            this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.copyToolStripMenuItem.Text = "Copy";
+            this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -226,6 +245,7 @@
             this.Name = "Form1";
             this.Text = "TcpClient And Socket Example";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -250,6 +270,8 @@
         public System.Windows.Forms.ListBox listBoxData;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.CheckBox checkBoxRememberMe;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem;
     }
 }
 
