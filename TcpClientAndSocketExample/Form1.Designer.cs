@@ -49,6 +49,7 @@
             this.checkBoxRememberMe = new System.Windows.Forms.CheckBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnExportFileTxt = new System.Windows.Forms.Button();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -75,7 +76,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(130, 292);
+            this.label1.Location = new System.Drawing.Point(130, 305);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(38, 13);
             this.label1.TabIndex = 1;
@@ -152,7 +153,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(71, 292);
+            this.label6.Location = new System.Drawing.Point(71, 305);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(53, 13);
             this.label6.TabIndex = 3;
@@ -160,7 +161,7 @@
             // 
             // btnClearForm
             // 
-            this.btnClearForm.Location = new System.Drawing.Point(31, 247);
+            this.btnClearForm.Location = new System.Drawing.Point(31, 238);
             this.btnClearForm.Name = "btnClearForm";
             this.btnClearForm.Size = new System.Drawing.Size(180, 23);
             this.btnClearForm.TabIndex = 0;
@@ -210,14 +211,24 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.copyToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 48);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(103, 26);
             // 
             // copyToolStripMenuItem
             // 
             this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
             this.copyToolStripMenuItem.Text = "Copy";
             this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
+            // 
+            // btnExportFileTxt
+            // 
+            this.btnExportFileTxt.Location = new System.Drawing.Point(31, 266);
+            this.btnExportFileTxt.Name = "btnExportFileTxt";
+            this.btnExportFileTxt.Size = new System.Drawing.Size(180, 23);
+            this.btnExportFileTxt.TabIndex = 0;
+            this.btnExportFileTxt.Text = "Export File .txt";
+            this.btnExportFileTxt.UseVisualStyleBackColor = true;
+            this.btnExportFileTxt.Click += new System.EventHandler(this.btnExportFileTxt_Click);
             // 
             // Form1
             // 
@@ -239,6 +250,7 @@
             this.Controls.Add(this.txtIPAddress);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnSocket);
+            this.Controls.Add(this.btnExportFileTxt);
             this.Controls.Add(this.btnClearForm);
             this.Controls.Add(this.btnTcpClient);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -272,6 +284,7 @@
         private System.Windows.Forms.CheckBox checkBoxRememberMe;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem;
+        private System.Windows.Forms.Button btnExportFileTxt;
     }
 }
 
