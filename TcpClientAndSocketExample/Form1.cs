@@ -168,6 +168,7 @@ namespace TcpClientAndSocketExample
                             Byte[] data = Encoding.ASCII.GetBytes(baseRequest.SendData);
                             stream = tcpCli.GetStream();
                             stream.Write(data, 0, data.Length);
+
                             //Read from TCP Client
                             string answer = "";
                             DateTime st = DateTime.Now;
@@ -291,7 +292,7 @@ namespace TcpClientAndSocketExample
             string newDate = year + "-" + month + "-" + day;
             //string dosya_yolu = @"C:\Users\User\Desktop\New folder (5)\metinbelgesi.txt";
             string dosya_yolu = filePath + "\\" + newDate + "-" + fileName + ".txt";
-                Write(text, dosya_yolu);
+            Write(text, dosya_yolu);
         }
 
         private static void Write(string text, string dosya_yolu)
@@ -310,6 +311,39 @@ namespace TcpClientAndSocketExample
             sw.Close();
             fs.Close();
             //İşimiz bitince kullandığımız nesneleri iade ettik.
+        }
+
+        private async void simpleButton1_ClickAsync(object sender, EventArgs e)
+        {
+            //Client = new TCPClient();
+            //ServerIP = Client.ConnectToServer();
+            try
+            {
+                await Task.Run(() => NewMethod());
+            }
+            catch (Exception exception)
+            {
+                //e
+            }
+        }
+
+        private void NewMethod()
+        {
+            var listen = new TcpListener(IPAddress.Any, 5600);
+            listen.Start();
+            Byte[] bytes;
+            while (true)
+            {
+                TcpClient client = listen.AcceptTcpClient();
+                NetworkStream ns = client.GetStream();
+                if (client.ReceiveBufferSize > 0)
+                {
+                    bytes = new byte[client.ReceiveBufferSize];
+                    ns.Read(bytes, 0, client.ReceiveBufferSize);
+                    string msg = Encoding.ASCII.GetString(bytes); //the message incoming
+                    MessageBox.Show(msg);
+                }
+            }
         }
     }
 }

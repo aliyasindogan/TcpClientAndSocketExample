@@ -45,11 +45,12 @@
             this.btnClearForm = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.listBoxData = new System.Windows.Forms.ListBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.checkBoxRememberMe = new System.Windows.Forms.CheckBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label8 = new System.Windows.Forms.Label();
+            this.checkBoxRememberMe = new System.Windows.Forms.CheckBox();
             this.btnExportFileTxt = new System.Windows.Forms.Button();
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -187,6 +188,20 @@
             this.listBoxData.Size = new System.Drawing.Size(461, 277);
             this.listBoxData.TabIndex = 4;
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.copyToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(103, 26);
+            // 
+            // copyToolStripMenuItem
+            // 
+            this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
+            this.copyToolStripMenuItem.Text = "Copy";
+            this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
+            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -206,20 +221,6 @@
             this.checkBoxRememberMe.Text = "Remember Me";
             this.checkBoxRememberMe.UseVisualStyleBackColor = true;
             // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.copyToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(103, 26);
-            // 
-            // copyToolStripMenuItem
-            // 
-            this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
-            this.copyToolStripMenuItem.Text = "Copy";
-            this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
-            // 
             // btnExportFileTxt
             // 
             this.btnExportFileTxt.Location = new System.Drawing.Point(31, 266);
@@ -230,11 +231,21 @@
             this.btnExportFileTxt.UseVisualStyleBackColor = true;
             this.btnExportFileTxt.Click += new System.EventHandler(this.btnExportFileTxt_Click);
             // 
+            // simpleButton1
+            // 
+            this.simpleButton1.Location = new System.Drawing.Point(212, 313);
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(75, 23);
+            this.simpleButton1.TabIndex = 6;
+            this.simpleButton1.Text = "simpleButton1";
+            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_ClickAsync);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(764, 336);
+            this.ClientSize = new System.Drawing.Size(764, 361);
+            this.Controls.Add(this.simpleButton1);
             this.Controls.Add(this.checkBoxRememberMe);
             this.Controls.Add(this.listBoxData);
             this.Controls.Add(this.label5);
@@ -285,6 +296,7 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem;
         private System.Windows.Forms.Button btnExportFileTxt;
+        private DevExpress.XtraEditors.SimpleButton simpleButton1;
     }
 }
 
